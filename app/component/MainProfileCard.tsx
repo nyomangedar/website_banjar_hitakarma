@@ -1,18 +1,25 @@
 import { StaticImageData } from "next/image";
 import Image from "next/image";
 
-export default function MainProfileCard(
-    image: StaticImageData,
-    title: String,
-    subtitle: String,
-    text: String,
-    left: boolean = true
-) {
+type MainProfileCardProps = {
+    image: StaticImageData;
+    title: String;
+    subtitle: String;
+    text: String;
+    left: boolean;
+};
+const MainProfileCard: React.FC<MainProfileCardProps> = ({
+    image,
+    title,
+    subtitle,
+    text,
+    left = true,
+}) => {
     const content1 = (
         <>
             <div>
-                <h2 className="font-bold">PURA</h2>
-                <h5>Penataran Agung Kertha Bumi</h5>
+                <h2 className="font-bold">{title}</h2>
+                <h5>{subtitle}</h5>
             </div>
             <div className="flex gap-16">
                 <div
@@ -78,4 +85,5 @@ export default function MainProfileCard(
             {left ? content1 : content2}
         </div>
     );
-}
+};
+export default MainProfileCard;
