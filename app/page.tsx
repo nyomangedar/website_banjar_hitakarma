@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import bg1 from "./asset/tari_pura.jpeg";
 import bg2 from "./asset/pasramanCover.jpeg";
 import MainProfileCard from "./component/MainProfileCard";
+import VisiMisiCard from "./component/VisiMisiCard";
 import pura from "./asset/pura.jpeg";
 import banjar from "./asset/banjar.jpeg";
 import organisasi from "./asset/organisasi.jpeg";
@@ -62,6 +63,12 @@ export default function Home() {
                     </p>
                 </div>
             </div>
+
+            {/* VISI MISI NILAI */}
+            <div>
+                <VisiMisiCard />
+            </div>
+                           
 
             {/* MAIN PROFILE SECTION */}
             <div className="flex flex-col" style={{ marginTop: "200px" }}>
