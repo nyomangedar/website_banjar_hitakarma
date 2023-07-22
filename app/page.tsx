@@ -65,10 +65,29 @@ export default function Home() {
             </div>
 
             {/* VISI MISI NILAI */}
-            <div>
-                <VisiMisiCard />
+            <div style={{ marginTop: "200px" }}>
+                <VisiMisiCard
+                    image={bg1}
+                    title="VISI"
+                    content="visi"
+                    hCard={334}
+                    hContent={305}
+                />
+                <VisiMisiCard
+                    image={bg2}
+                    title="MISI"
+                    content="misi"
+                    hCard={487}
+                    hContent={457}
+                />
+                <VisiMisiCard
+                    image={bg1}
+                    title="NILAI-GUYUB"
+                    content="nilai"
+                    hCard={334}
+                    hContent={305}
+                />
             </div>
-                           
 
             {/* MAIN PROFILE SECTION */}
             <div className="flex flex-col" style={{ marginTop: "200px" }}>
