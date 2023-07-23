@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import Map from "./component/Map";
 import temple from "./asset/map_hindu-temple.svg";
 import school from "./asset/teenyicons_school-outline.svg";
+import ArtikelCard from "./component/ArtikelCard";
 
 export default function Home() {
     const ReactPlayer = dynamic(() => import("react-player/lazy"), {
@@ -193,6 +194,22 @@ export default function Home() {
                 <div className="text-center">
                     <h1 className="text-extrabold">KEGIATAN</h1>
                     <h5>Beberapa Kegiatan Yang Dilakukan Di Banjar Kami</h5>
+                </div>
+                <div className="flex flex-row">
+                    <ArtikelCard
+                        image={bg1}
+                        title="pemilihan calon ketua banjar hitakarma pondok gede periode 2023 - 2026"
+                        author="Ketut Dobleh"
+                        timestamp="5 Jun 2023"
+                        content={content.banjar}
+                    />
+                    {/* <ArtikelCard
+                        image={bg1}
+                        title="pemilihan calon ketua banjar hitakarma pondok gede periode 2023 - 2026"
+                        author="Ketut Dobleh"
+                        timestamp="5 Jun 2023"
+                        content={content.banjar}
+                    /> */}
                 </div>
             </div>
             {/* DANA PUNIA */}

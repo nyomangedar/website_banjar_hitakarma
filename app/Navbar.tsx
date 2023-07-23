@@ -58,24 +58,26 @@ function navbarLinks(
 }
 export default function Navbar() {
     return (
-        <nav>
-            <div
-                className="flex items-center place-content-between white h-36"
-                style={{
-                    color: "black",
-                    backgroundColor: "white",
-                    padding: "0 100px 0 100px",
-                }}
-            >
-                <Image src={logo} width={123} height={123} alt="logo" />
-                <div className="flex items-center gap-7">
-                    {navbarLinks("BANJAR", true, [
-                        ["Banjar Hitakarma", "banjar-hitakarma"],
-                    ])}
-                    {navbarLinks("PURA")}
-                    {navbarLinks("ORGANISASI", true)}
-                    {navbarLinks("EVENT", true)}
-                    {navbarLinks("KONTAK", true)}
+        <nav className="relative">
+            <div className="fixed top-0 left-0 right-0 z-[999]">
+                <div
+                    className="flex items-center place-content-between white h-36"
+                    style={{
+                        color: "black",
+                        backgroundColor: "white",
+                        padding: "0 100px 0 100px",
+                    }}
+                >
+                    <Image src={logo} width={123} height={123} alt="logo" />
+                    <div className="flex items-center gap-7">
+                        {navbarLinks("BANJAR", true, [
+                            ["Banjar Hitakarma", "banjar-hitakarma"],
+                        ])}
+                        {navbarLinks("PURA")}
+                        {navbarLinks("ORGANISASI", true)}
+                        {navbarLinks("EVENT", true)}
+                        {navbarLinks("KONTAK", true)}
+                    </div>
                 </div>
             </div>
         </nav>
