@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import bg1 from "./asset/tari_pura.jpeg";
 import bg2 from "./asset/pasramanCover.jpeg";
+import polengbg from "./asset/polengbg.jpg";
 import MainProfileCard from "./component/MainProfileCard";
 import VisiMisiCard from "./component/VisiMisiCard";
 import pura from "./asset/pura.jpeg";
@@ -14,6 +15,7 @@ import Map from "./component/Map";
 import temple from "./asset/map_hindu-temple.svg";
 import school from "./asset/teenyicons_school-outline.svg";
 import ArtikelCard from "./component/ArtikelCard";
+import DonasiCaraousel from "./component/DonasiCaraousel";
 
 export default function Home() {
     const ReactPlayer = dynamic(() => import("react-player/lazy"), {
@@ -220,35 +222,63 @@ export default function Home() {
                         timestamp="5 Jun 2023"
                         content={content.banjar}
                     />
-                    {/* <ArtikelCard
-                        image={bg2}
-                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
-                        author="Ketut Dobleh"
-                        timestamp="5 Jun 2023"
-                        content={content.banjar}
-                    /> */}
-                    {/* <ArtikelCard
-                        image={bg2}
-                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
-                        author="Ketut Dobleh"
-                        timestamp="5 Jun 2023"
-                        content={content.banjar}
-                    />
-                    <ArtikelCard
-                        image={bg2}
-                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
-                        author="Ketut Dobleh"
-                        timestamp="5 Jun 2023"
-                        content={content.banjar}
-                    /> */}
                 </div>
             </div>
             {/* DANA PUNIA */}
 
-            <div>
-                <div className="text-center">
-                    <h1 className="text-extrabold">DONASI</h1>
-                    <h5>Beberapa Kegiatan Yang Dilakukan Di Banjar Kami</h5>
+            <div
+                className="flex justify-center items-center"
+                style={{
+                    marginTop: 142,
+                    position: "relative",
+                    width: "100%",
+                    height: 620,
+                    borderTop: "6px solid #000",
+                }}
+            >
+                <div
+                    style={{
+                        position: "absolute",
+                        backgroundColor: "rgba(196, 196, 196, 0.2)",
+                        zIndex: -1,
+                        width: "100%",
+                        height: "100%",
+                    }}
+                />
+                <div
+                    style={{
+                        position: "absolute",
+                        backgroundColor: "rgba(154, 0, 0, 0.80)",
+                        zIndex: -2,
+                        width: "100%",
+                        height: "100%",
+                    }}
+                />
+                <Image
+                    src={polengbg}
+                    alt="background poleng"
+                    fill
+                    sizes="100vw"
+                    style={{
+                        objectFit: "cover",
+                        zIndex: -40,
+                    }}
+                />
+                <DonasiCaraousel />
+                <div
+                    className="flex flex-col gap-9 justify-items-center"
+                    style={{ color: "white" }}
+                >
+                    <h1>DANA PUNIA</h1>
+                    <h5>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Fusce quis consectetur ante, quis convallis urna. Nunc
+                        vel odio neque. Donec eget varius diam, sit amet tempus
+                        augue. Donec lectus quam, laoreet eu ante vel, aliquet
+                        bibendum felis. Interdum et malesuada fames ac ante
+                        ipsum primis in faucibus.
+                    </h5>
+                    <button className="main">Donasi</button>
                 </div>
             </div>
         </div>
