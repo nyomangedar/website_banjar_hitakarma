@@ -137,7 +137,7 @@ const VisiMisiCard: React.FC<VisiMisiCardProps> = ({
                 style={{
                     width: "1002px",
                     minHeight: hContent,
-                    padding: "0 100px 0 100px",
+                    padding: "0 150px 0 150px",
                 }}
             >
                 <h1>{title}</h1>

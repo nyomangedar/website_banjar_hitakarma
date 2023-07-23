@@ -81,7 +81,7 @@ const MainProfileCard: React.FC<MainProfileCardProps> = ({
         </>
     );
     return (
-        <div style={{ padding: "0 100px 0 100px", marginBottom: "170px" }}>
+        <div style={{ padding: "0 150px 0 150px", marginBottom: "170px" }}>
             {left ? content1 : content2}
         </div>
     );

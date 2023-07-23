@@ -26,7 +26,6 @@ export default function Home() {
                 <Image
                     alt="tari di pura"
                     src={bg1}
-                    // sizes="100vw"
                     sizes="100vw"
                     fill
                     style={{
@@ -195,17 +194,49 @@ export default function Home() {
                     <h1 className="text-extrabold">KEGIATAN</h1>
                     <h5>Beberapa Kegiatan Yang Dilakukan Di Banjar Kami</h5>
                 </div>
-                <div className="flex flex-row">
+                <div
+                    className="flex flex-row justify-around"
+                    style={{ padding: "0 150px 0 150px", marginTop: 58 }}
+                >
                     <ArtikelCard
-                        image={bg1}
-                        title="pemilihan calon ketua banjar hitakarma pondok gede periode 2023 - 2026"
+                        image={bg2}
+                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
+                        author="Ketut Dobleh"
+                        timestamp="5 Jun 2023"
+                        content={content.banjar}
+                    />
+
+                    <ArtikelCard
+                        image={bg2}
+                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
+                        author="Ketut Dobleh"
+                        timestamp="5 Jun 2023"
+                        content={content.banjar}
+                    />
+                    <ArtikelCard
+                        image={bg2}
+                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
                         author="Ketut Dobleh"
                         timestamp="5 Jun 2023"
                         content={content.banjar}
                     />
                     {/* <ArtikelCard
-                        image={bg1}
-                        title="pemilihan calon ketua banjar hitakarma pondok gede periode 2023 - 2026"
+                        image={bg2}
+                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
+                        author="Ketut Dobleh"
+                        timestamp="5 Jun 2023"
+                        content={content.banjar}
+                    /> */}
+                    {/* <ArtikelCard
+                        image={bg2}
+                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
+                        author="Ketut Dobleh"
+                        timestamp="5 Jun 2023"
+                        content={content.banjar}
+                    />
+                    <ArtikelCard
+                        image={bg2}
+                        title="Pemilihan Calon Ketua Banjar Hitakarma Pondok Gede Periode 2023-2026"
                         author="Ketut Dobleh"
                         timestamp="5 Jun 2023"
                         content={content.banjar}
@@ -213,6 +244,13 @@ export default function Home() {
                 </div>
             </div>
             {/* DANA PUNIA */}
+
+            <div>
+                <div className="text-center">
+                    <h1 className="text-extrabold">DONASI</h1>
+                    <h5>Beberapa Kegiatan Yang Dilakukan Di Banjar Kami</h5>
+                </div>
+            </div>
         </div>
     );
 }

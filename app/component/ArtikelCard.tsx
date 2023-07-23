@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import avatar from "../asset/avatar.svg";
 import time from "../asset/carbon_time.svg";
+import { relative } from "path";
 type ArtikelCardProps = {
     image: StaticImageData;
     title: string;
@@ -17,8 +18,18 @@ const ArtikelCard: React.FC<ArtikelCardProps> = ({
 }) => {
     return (
         <>
-            <div className="flex flex-col" style={{ width: 436, height: 351 }}>
-                <div style={{ width: "100%", height: "204px" }}>
+            <div
+                className="cursor-pointer mr-10"
+                style={{ width: 351, height: "100%" }}
+            >
+                <div
+                    style={{
+                        width: "100%",
+                        height: 204,
+                        position: "relative",
+                        marginBottom: 21,
+                    }}
+                >
                     <Image
                         alt="card image thumbnail"
                         src={image}
@@ -30,10 +41,15 @@ const ArtikelCard: React.FC<ArtikelCardProps> = ({
                         }}
                     />
                 </div>
-                <div className="flex flex-col gap-4">
-                    <p className="font-bold">{title}</p>
+                <div className="flex flex-col gap-2">
+                    <div className="align-middle">
+                        <p className="font-bold" style={{ height: 81 }}>
+                            {title}
+                        </p>
+                    </div>
+
                     <div className="flex">
-                        <div className="flex flex-row gap-2 pr-20">
+                        <div className="flex flex-row gap-2 pr-5">
                             <Image alt="avatar penulis" src={avatar} />
                             <p>{author}</p>
                         </div>
@@ -43,8 +59,8 @@ const ArtikelCard: React.FC<ArtikelCardProps> = ({
                         </div>
                     </div>
                     <p
-                        className="text-ellipsis overflow-hidden whitespace-nowrap"
-                        style={{ width: 345, maxHeight: 93 }}
+                        className="line-clamp-4"
+                        style={{ width: 345, height: 105 }}
                     >
                         {content}
                     </p>
