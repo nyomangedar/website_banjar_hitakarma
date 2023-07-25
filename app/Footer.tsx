@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
 
                 <div className="text-left">
                     <tr>
-                        <th>
+                        <th className="pr-3">
                             <Image
                                 src="/icon/location_red.svg"
                                 alt="location"
@@ -60,12 +60,12 @@ const Footer: React.FC = () => {
                                 height={17}
                             />
                         </th>
-                        <th>
+                        <th className="pr-3">
                             <h6>Penataran Agung Kertha Bumi</h6>
                         </th>
                     </tr>
                     <tr>
-                        <th>
+                        <th className="pr-3">
                             <Image
                                 src="/icon/phone_red.svg"
                                 alt="phone"
@@ -73,12 +73,12 @@ const Footer: React.FC = () => {
                                 height={16}
                             />
                         </th>
-                        <th>
+                        <th className="pr-3">
                             <h6>+62 812109999999</h6>
                         </th>
                     </tr>
                     <tr>
-                        <th>
+                        <th className="pr-3">
                             <Image
                                 src="/icon/email_red.svg"
                                 alt="email logo"
@@ -86,10 +86,21 @@ const Footer: React.FC = () => {
                                 height={24}
                             />
                         </th>
-                        <th>
+                        <th className="pr-3">
                             <h6>hitakarma.pondokgede@gmail.com</h6>
                         </th>
                     </tr>
+                </div>
+
+                <div className="flex flex-col text-center">
+                    <div
+                        style={{
+                            backgroundColor: "white",
+                            height: 1,
+                            margin: "20px 0 10px 0",
+                        }}
+                    />
+                    <h6>Copywrite @2023 Banjar Hitakarma Pondok Gede</h6>
                 </div>
             </div>
         </div>
