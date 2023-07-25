@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import bg1 from "./asset/tari_pura.jpeg";
 import bg2 from "./asset/pasramanCover.jpeg";
 import polengbg from "./asset/polengbg.jpg";
+import qr from "./asset/324672.png";
 import MainProfileCard from "./component/MainProfileCard";
 import VisiMisiCard from "./component/VisiMisiCard";
 import pura from "./asset/pura.jpeg";
@@ -15,7 +16,7 @@ import Map from "./component/Map";
 import temple from "./asset/map_hindu-temple.svg";
 import school from "./asset/teenyicons_school-outline.svg";
 import ArtikelCard from "./component/ArtikelCard";
-import DonasiCaraousel from "./component/DonasiCaraousel";
+import Galeri from "./component/Galeri";
 
 export default function Home() {
     const ReactPlayer = dynamic(() => import("react-player/lazy"), {
@@ -224,10 +225,20 @@ export default function Home() {
                     />
                 </div>
             </div>
-            {/* DANA PUNIA */}
+            {/* GALERI */}
+            <div style={{ marginTop: 142 }}>
+                <div className="text-center pb-16">
+                    <h1 className="text-extrabold">GALERI</h1>
+                    <h5>
+                        Dokumentasi dari rangakaian aktifitas anggota banjar
+                    </h5>
+                </div>
+                <Galeri />
+            </div>
 
+            {/* DANA PUNIA */}
             <div
-                className="flex justify-center items-center"
+                className="flex justify-center items-center gap-16"
                 style={{
                     marginTop: 142,
                     position: "relative",
@@ -264,13 +275,24 @@ export default function Home() {
                         zIndex: -40,
                     }}
                 />
-                <DonasiCaraousel />
+                <div style={{ height: 485, width: 545, position: "relative" }}>
+                    <Image
+                        src={qr}
+                        fill
+                        alt="qr"
+                        sizes="100vw"
+                        style={{
+                            objectFit: "cover",
+                            zIndex: -1,
+                        }}
+                    />
+                </div>
                 <div
-                    className="flex flex-col gap-9 justify-items-center"
-                    style={{ color: "white" }}
+                    className="flex flex-col justify-between justify-items-center items-center"
+                    style={{ color: "white", width: 623, height: 475 }}
                 >
                     <h1>DANA PUNIA</h1>
-                    <h5>
+                    <h5 style={{ height: 187 }}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Fusce quis consectetur ante, quis convallis urna. Nunc
                         vel odio neque. Donec eget varius diam, sit amet tempus
