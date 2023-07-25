@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import logo from "./asset/logo.png";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function RootLayout({
     children,
@@ -16,7 +17,7 @@ export default function RootLayout({
                 <Navbar />
                 <main>{children}</main>
                 <div>
-                    <p>This is the footer</p>
+                    <Footer />
                 </div>
                 <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
             </body>
