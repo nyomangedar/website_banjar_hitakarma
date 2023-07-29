@@ -19,7 +19,7 @@ const ArtikelCard: React.FC<ArtikelCardProps> = ({
     return (
         <>
             <div
-                className="cursor-pointer mr-10"
+                className="cursor-pointer"
                 style={{ width: 351, height: "100%" }}
             >
                 <div

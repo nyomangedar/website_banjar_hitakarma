@@ -1,62 +1,34 @@
+"use client";
+
 import Image from "next/image";
-import { ReactNode } from "react";
 import logo from "./asset/logo.png";
 import vector from "./asset/Vector.svg";
+import NavbarLinks from "./component/NavbarLinks";
+import { useRef, useState, useEffect } from "react";
+import { useOnClickOutside } from "usehooks-ts";
 
-function navbarLinks(
-    name: string,
-    dropdown: Boolean = false,
-    links: [string, string][] | null = null
-) {
-    let id = name.toLowerCase();
-    let dropdownId = dropdown + name.toLowerCase();
-    function dropdownList(): ReactNode {
-        return (
-            <>
-                {links?.map((data) => (
-                    <li>
-                        <a href={data[1]} className="font-primary">
-                            {data[0]}
-                        </a>
-                    </li>
-                ))}
-            </>
-        );
-    }
-    return (
-        <>
-            <button
-                id={id}
-                data-dropdown-toggle={dropdownId}
-                className="flex gap-1 items-center font-primary"
-            >
-                <h5 className="font-medium">{name}</h5>{" "}
-                {dropdown && (
-                    <Image
-                        src={vector}
-                        width={19}
-                        height={11}
-                        alt="vector logo"
-                    />
-                )}
-            </button>
-            {links && (
-                <div
-                    id={dropdownId}
-                    className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-                >
-                    <ul
-                        aria-labelledby={id}
-                        className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                    >
-                        {dropdownList()}
-                    </ul>
-                </div>
-            )}
-        </>
-    );
-}
 export default function Navbar() {
+    const [dropdownActive, setdropdown] = useState([
+        false,
+        false,
+        false,
+        false,
+        false,
+    ]);
+    const dropdownRef = useRef(null);
+    const activateDropdown = (index: number) => {
+        let state = [false, false, false, false, false];
+        if (index >= 0) {
+            state[index] = true;
+        }
+        setdropdown(state);
+        console.log({ dropdownActive });
+    };
+
+    const handleClickOutside = () => {
+        activateDropdown(-1);
+    };
+    useOnClickOutside(dropdownRef, handleClickOutside);
     return (
         <nav className="relative">
             <div className="fixed top-0 left-0 right-0 z-[999]">
@@ -69,14 +41,54 @@ export default function Navbar() {
                     }}
                 >
                     <Image src={logo} width={123} height={123} alt="logo" />
-                    <div className="flex items-center gap-7">
-                        {navbarLinks("BANJAR", true, [
-                            ["Banjar Hitakarma", "banjar-hitakarma"],
-                        ])}
-                        {navbarLinks("PURA")}
-                        {navbarLinks("ORGANISASI", true)}
-                        {navbarLinks("EVENT", true)}
-                        {navbarLinks("KONTAK", true)}
+                    <div className="flex items-center gap-7" ref={dropdownRef}>
+                        <NavbarLinks
+                            name="BANJAR"
+                            active={dropdownActive[0]}
+                            dropdown={true}
+                            links={[
+                                [
+                                    "Banjar Hitakarma Pondok Gede",
+                                    "banjarHitakarma",
+                                ],
+                                ["Banjar Jabodetabek", "banjarJabodetabek"],
+                                ["Yayasan Banjar Hitakarma", "yayasan"],
+                                ["Pasraman Purna Lingga", "pasraman"],
+                            ]}
+                            onButtonClicks={() => activateDropdown(0)}
+                        />
+                        <NavbarLinks name="PURA" />
+                        <NavbarLinks
+                            name="ORGANISASI"
+                            active={dropdownActive[2]}
+                            dropdown={true}
+                            links={[
+                                ["PWHD", "pwhd"],
+                                ["PPHD", "pphd"],
+                            ]}
+                            onButtonClicks={() => activateDropdown(2)}
+                        />
+                        <NavbarLinks
+                            name="EVENT"
+                            active={dropdownActive[3]}
+                            dropdown={true}
+                            links={[
+                                ["Agenda", "agenda"],
+                                ["Artikel", "artikel"],
+                            ]}
+                            onButtonClicks={() => activateDropdown(3)}
+                        />
+                        <NavbarLinks
+                            name="KONTAK"
+                            active={dropdownActive[4]}
+                            dropdown={true}
+                            links={[
+                                ["Alamant dan Kontak", "alamat"],
+                                ["Donasi", "donasi"],
+                                ["FAQ", "faq"],
+                            ]}
+                            onButtonClicks={() => activateDropdown(4)}
+                        />
                     </div>
                 </div>
             </div>
