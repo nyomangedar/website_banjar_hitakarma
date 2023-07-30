@@ -112,7 +112,7 @@ export default function Home() {
                     image={organisasi}
                     title="ORGANISASI"
                     subtitle="Perkumpulan Masyarakat Hindu"
-                    text={content.pura}
+                    text={content.organisasi}
                     left
                 />
             </div>

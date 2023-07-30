@@ -30,7 +30,7 @@ export default function Navbar() {
     };
     useOnClickOutside(dropdownRef, handleClickOutside);
     return (
-        <nav className="relative">
+        <nav className="relative" style={{ zIndex: 99 }}>
             <div className="fixed top-0 left-0 right-0 z-[999]">
                 <div
                     className="flex items-center place-content-between white h-36"
