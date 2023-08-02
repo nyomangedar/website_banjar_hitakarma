@@ -11,12 +11,12 @@ const ReadMore = ({ children }: ReadMoreProps) => {
     setIsReadMore(!isReadMore);
   };
   return (
-    <p className="mt-5">
+    <h4 className="mt-5">
       {isReadMore ? text.slice(0, 300) : text}
       <span onClick={toggleReadMore} className="cursor-pointer text-blue-500">
-        {isReadMore ? "... Baca Lebih Lanjut" : " Maca Kurang"}
+        {isReadMore ? " ...Baca Lebih Lanjut" : " Maca Kurang"}
       </span>
-    </p>
+    </h4>
   );
 };
 

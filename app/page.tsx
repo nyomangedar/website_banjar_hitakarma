@@ -17,6 +17,7 @@ import temple from "./asset/map_hindu-temple.svg";
 import school from "./asset/teenyicons_school-outline.svg";
 import ArtikelCard from "./component/ArtikelCard";
 import Galeri from "./component/Galeri";
+import TridatuDivider from "./component/TridatuDIvider";
 
 export default function Home() {
   const ReactPlayer = dynamic(() => import("react-player/lazy"), {
@@ -25,7 +26,7 @@ export default function Home() {
   return (
     <div>
       {/* Landing Cover */}
-      <div className={styles.landingCover}>
+      <div className="min-h-[720px] relative mt-[80px] text-white">
         <Image
           alt="tari di pura"
           src={bg1}
@@ -44,6 +45,7 @@ export default function Home() {
           <h4>Maju Bersama Dalam Nuansi Harmoni Menuju Dharma</h4>
         </div>
       </div>
+      <TridatuDivider />
 
       {/* OM SWASTYASTU */}
       <div

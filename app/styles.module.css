@@ -1,15 +1,15 @@
 .landingCover {
-    min-height: 533px;
-    color: white;
-    position: relative;
-    margin-top: 145px;
+  min-height: 533px;
+  color: white;
+  position: relative;
+  margin-top: 80px;
 }
 
 .pasramanCover {
-    min-height: 573px;
-    color: white;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  min-height: 573px;
+  color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

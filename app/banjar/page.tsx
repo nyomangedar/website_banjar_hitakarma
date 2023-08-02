@@ -54,13 +54,57 @@ export default function Banjar() {
       name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
       title: "Humas I",
     },
+    {
+      id: 7,
+      image: managementImg,
+      name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
+      title: "Sekretaris II",
+    },
+    {
+      id: 8,
+      image: managementImg,
+      name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
+      title: "Bendhara II",
+    },
+    {
+      id: 9,
+      image: managementImg,
+      name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
+      title: "Humas II",
+    },
+  ];
+  const bidang = [
+    {
+      id: 1,
+      image: managementImg,
+      name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
+      title: "Ketua Bidang I",
+    },
+    {
+      id: 2,
+      image: managementImg,
+      name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
+      title: "Ketua Bidang II",
+    },
+    {
+      id: 3,
+      image: managementImg,
+      name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
+      title: "Ketua Bidang III",
+    },
+    {
+      id: 3,
+      image: managementImg,
+      name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
+      title: "Ketua Bidang IV",
+    },
   ];
   return (
-    <div className="mb-40 mt-44">
-      <h1 className="text-3xl ml-20 mb-10">Banjar</h1>
+    <div className="mb-40 mt-[80px]">
+      {/* <h1 className="text-5xl ml-20 mb-10">Banjar</h1> */}
       {/* Landing Cover */}
-      <div className="relative min-h-[533px]">
-        <div className="absolute bg-red-500 opacity-50 w-full min-h-[533px] z-10" />
+      <div className="relative min-h-[710px]">
+        <div className="absolute bg-red-500 opacity-50 w-full min-h-[710px] z-10" />
         <Image
           alt="tari di pura"
           src={polengbg}
@@ -77,14 +121,14 @@ export default function Banjar() {
           <Image
             alt="overlay image"
             src={banjarImg} // replace this with your actual image source
-            className="max-w-[700px] max-h-[700px] object-cover" // 50% of the parent's width and height
+            className="max-w max-h-[900px] object-cover" // 50% of the parent's width and height
           />
         </div>
       </div>
       <TridatuDivider />
-      <div className="mx-20 mt-10">
+      <div className="mx-[150px] mt-10">
         <h1 className="text-4xl">Banjar Hitakarma Pondok Gede</h1>
-        <p className="mt-5">
+        <h4 className="mt-5">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac aliquam
           purus. Suspendisse lacinia, elit ut maximus lobortis, ligula dui
           egestas velit, id aliquam magna quam ut felis. Aliquam finibus augue
@@ -94,10 +138,10 @@ export default function Banjar() {
           velit. Nam cursus rhoncus ex vitae accumsan. Proin a lacus tincidunt,
           viverra augue vitae, sagittis lorem. Pellentesque in imperdiet tellus,
           vel tristique nulla.
-        </p>
+        </h4>
         <h1 className="mt-20 text-4xl">Sejarah</h1>
         <h4 className="mt-10">2000</h4>
-        <p className="mt-5">
+        <h4 className="mt-5">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac aliquam
           purus. Suspendisse lacinia, elit ut maximus lobortis, ligula dui
           egestas velit, id aliquam magna quam ut felis. Aliquam finibus augue
@@ -105,7 +149,7 @@ export default function Banjar() {
           purus at sodales. Aenean iaculis enim urna, vestibulum bibendum turpis
           ullamcorper at. Integer eu nulla pretium, tempor ipsum et, tempor
           velit.
-        </p>
+        </h4>
         <div className="flex justify-center mt-10">
           <Image alt="sejarah" src={sejarahImg} />
         </div>
@@ -161,8 +205,29 @@ export default function Banjar() {
         </ReadMore>
         <h1 className="mt-20 text-4xl">Kepengurusan</h1>
         <h2 className="mt-5 text-4xl">Periode 2023 - 2026</h2>
-        <div className="p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-32">
+        <ReadMore>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac aliquam
+          purus. Suspendisse lacinia, elit ut maximus lobortis, ligula dui
+          egestas velit, id aliquam magna quam ut felis. Aliquam finibus augue
+          mauris, vitae pulvinar augue hendrerit ac. Cras ullamcorper maximus
+          purus at sodales. Aenean iaculis enim urna, vestibulum bibendum turpis
+          ullamcorper at. Integer eu nulla pretium, tempor ipsum et, tempor
+          velit.Nam cursus rhoncus ex vitae accumsan. Proin a lacus tincidunt,
+          viverra augue vitae, sagittis lorem. Pellentesque in imperdiet tellus,
+          vel tristique nulla.
+        </ReadMore>
+        <div className="mt-10 grid grid-cols-3 gap-x-[240px] gap-y-8 justify-center items-center">
           {management.map((person) => (
+            <ProfileCard
+              key={person.id}
+              image={person.image}
+              jobTitle={person.title}
+              name={person.name}
+            />
+          ))}
+        </div>
+        <div className="mt-10 grid grid-cols-4 gap-20">
+          {bidang.map((person) => (
             <ProfileCard
               key={person.id}
               image={person.image}
