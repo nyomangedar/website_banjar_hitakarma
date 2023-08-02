@@ -93,7 +93,7 @@ export default function Banjar() {
       title: "Ketua Bidang III",
     },
     {
-      id: 3,
+      id: 4,
       image: managementImg,
       name: "Prof. Dr. Anak Agung Dobleh Gede Karangasem",
       title: "Ketua Bidang IV",
@@ -154,7 +154,7 @@ export default function Banjar() {
           <Image alt="sejarah" src={sejarahImg} />
         </div>
         <h4 className="mt-10">2003</h4>
-        <p className="mt-5">
+        <h4 className="mt-5">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac aliquam
           purus. Suspendisse lacinia, elit ut maximus lobortis, ligula dui
           egestas velit, id aliquam magna quam ut felis. Aliquam finibus augue
@@ -162,7 +162,7 @@ export default function Banjar() {
           purus at sodales. Aenean iaculis enim urna, vestibulum bibendum turpis
           ullamcorper at. Integer eu nulla pretium, tempor ipsum et, tempor
           velit.
-        </p>
+        </h4>
         <div className="flex justify-center mt-10">
           <Image
             alt="sejarah"
