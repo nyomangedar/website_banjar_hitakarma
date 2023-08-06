@@ -1,0 +1,17 @@
+version: "3"
+services:
+    web:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+
+    backend:
+        build:
+            context: ./backend # Path to the directory containing your Go backend code
+            dockerfile: Dockerfile # Path to the Dockerfile for the Go backend
+        ports:
+            - "8080:8080" # Expose port 8080 on the host to access the Go backend
+        environment:
+            - MONGOURI=${MONGOURI}
