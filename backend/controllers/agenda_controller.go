@@ -5,6 +5,7 @@ import (
 	"backend/models"
 	"backend/responses"
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -62,9 +63,9 @@ func CurrentMonthAgenda(c *fiber.Ctx) error {
 	defer cancel()
 
 	filter := bson.M{
-		"date": []interface{}{
-			bson.M{"gte": getFirstDayInMonth()},
-			bson.M{"lte": getLastDayInMonth()},
+		"date": bson.M{
+			"$gte": getFirstDayInMonth(),
+			"$lte": getLastDayInMonth(),
 		},
 	}
 
@@ -86,14 +87,18 @@ func CurrentMonthAgenda(c *fiber.Ctx) error {
 
 }
 
-func getLastDayInMonth() time.Time {
-	t := time.Now()
-	nextMonth := t.AddDate(0, 1, 0)
-	lastDayOfMonth := nextMonth.AddDate(0, 0, -1)
-	return lastDayOfMonth
+func getFirstDayInMonth() time.Time {
+	now := time.Now()
+	currentYear, currentMonth, _ := now.Date()
+	currentLocation := now.Location()
+	firstOfMonth := time.Date(currentYear, currentMonth, 1, 0, 0, 0, 0, currentLocation)
+	fmt.Println(firstOfMonth)
+	return firstOfMonth
 }
 
-func getFirstDayInMonth() time.Time {
-	t := time.Now()
-	return t.AddDate(0, 0, -t.Day()+1)
+func getLastDayInMonth() time.Time {
+	firstOfMonth := getFirstDayInMonth()
+	lastOfMonth := firstOfMonth.AddDate(0, 1, -1)
+	fmt.Println(lastOfMonth)
+	return lastOfMonth
 }
