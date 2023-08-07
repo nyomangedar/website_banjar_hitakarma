@@ -33,10 +33,11 @@ func CreateAgenda(c *fiber.Ctx) error {
 	}
 
 	newAgenda := models.Agenda{
-		Title:        agenda.Title,
-		TimeFrom:     agenda.TimeFrom,
-		TimeUntil:    agenda.TimeUntil,
-		Desc:         agenda.Desc,
+		Title:     agenda.Title,
+		TimeFrom:  agenda.TimeFrom,
+		TimeUntil: agenda.TimeUntil,
+		Desc:      agenda.Desc,
+		// TODO: Change date to input user
 		Date:         time.Now(),
 		LocationFrom: agenda.LocationFrom,
 		LocationTo:   agenda.LocationTo,
@@ -76,6 +77,34 @@ func CurrentMonthAgenda(c *fiber.Ctx) error {
 	}
 
 	defer results.Close(ctx)
+	for results.Next(ctx) {
+		var singleAgenda models.Agenda
+		if err = results.Decode(&singleAgenda); err != nil {
+			return c.Status(http.StatusInternalServerError).JSON(responses.AgendaResponse{Status: http.StatusInternalServerError, Message: "Internal Server Error", Data: &fiber.Map{"data": err}})
+		}
+		agendas = append(agendas, singleAgenda)
+	}
+	return c.Status(http.StatusOK).JSON(responses.AgendaResponse{Status: http.StatusOK, Message: "Success Get This Month Agenda", Data: &fiber.Map{"data": agendas}})
+
+}
+
+// Get agenda yang lewat
+func PastAgenda(c *fiber.Ctx) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	var agendas []models.Agenda
+	defer cancel()
+
+	currentTime := time.Now()
+	filter := bson.M{
+		"date": bson.M{"lt": currentTime},
+	}
+
+	results, err := agendaCollection.Find(ctx, filter)
+
+	if err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(responses.AgendaResponse{Status: http.StatusInternalServerError, Message: "Internal Server Error", Data: &fiber.Map{"data": err}})
+	}
+
 	for results.Next(ctx) {
 		var singleAgenda models.Agenda
 		if err = results.Decode(&singleAgenda); err != nil {

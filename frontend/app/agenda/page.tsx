@@ -11,13 +11,17 @@ const Agenda = () => {
             <h1>AGENDA</h1>
 
             <div className="flex flex-col gap-10">
-                <h4>AGENDA TERDEKAT</h4>
+                <h4 className="font-bold">AGENDA TERDEKAT</h4>
                 <AgendaMainCard />
-                <h4>AGENDA BULAN INI</h4>
+                <a href="/agenda/agenda-bulan-ini">
+                    <h4 className="font-bold">AGENDA BULAN INI</h4>
+                </a>
                 <AgendaBulanIni />
-                <h4>AGENDA YANG SUDAH LEWAT</h4>
+                <a href="/agenda/agenda-yang-lewat">
+                    <h4 className="font-bold">AGENDA YANG SUDAH LEWAT</h4>
+                </a>
                 <AgendaLewat />
-                <h4>Blog Kegiatan</h4>
+                <h4 className="font-bold">BLOG KEGIATAN</h4>
                 <div className="flex flex-row justify-between">
                     <ArtikelCard
                         image={bg2}
