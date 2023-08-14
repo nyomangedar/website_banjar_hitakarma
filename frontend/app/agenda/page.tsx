@@ -1,3 +1,4 @@
+"use client";
 import AgendaMainCard from "../component/AgendaMainCard";
 import AgendaBulanIni from "./AgendaBulanIni";
 import AgendaLewat from "./AgendaLewat";

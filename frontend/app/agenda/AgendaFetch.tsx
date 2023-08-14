@@ -1,4 +1,7 @@
+"use client";
 import AgendaMiniCard from "../component/AgendaMiniCard";
+import { FetchURL } from "../component/FetchURL";
+import { Fetcher } from "swr";
 
 type agendaData = {
     title: string;
@@ -12,14 +15,9 @@ type agendaResponse = {
     };
 };
 
-const AgendaFetch = async (url: string, limit?: number) => {
-    const res: agendaResponse = await fetch(
-        `http://localhost:8000/${url}`
-    ).then((data) => data.json());
-    const content = res.data.data.slice(0, limit).map((data) => {
-        return <AgendaMiniCard />;
-    });
-    return content;
-};
+const BaseURL = FetchURL();
 
-export default AgendaFetch;
+const AgendaFetcher: Fetcher<agendaResponse> = (url: string) =>
+    fetch(`http://${BaseURL}:8000/${url}`).then((data) => data.json());
+
+export default AgendaFetcher;
