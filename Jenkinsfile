@@ -2,18 +2,23 @@ pipeline {
     agent any
     stages{
         stage('Cleaning up previous version'){
-            try{
-                echo 'Stopping container'
-                sh 'docker stop $(docker ps -a -q)'
-            } catch (Exception e) {
-                echo 'No containers running'
-            }
+            steps{
+                scripts{
+                    try{
+                        echo 'Stopping container'
+                        sh 'docker stop $(docker ps -a -q)'
+                    } catch (Exception e) {
+                        echo 'No containers running'
+                    }
 
-            try{
-                echo 'Removing previous images'
-                sh """docker rm banjar_frontend banjar_backend """
-            } catch (Exception e) {
-                echo 'Images are not present'
+                    try{
+                        echo 'Removing previous images'
+                        sh """docker rm banjar_frontend banjar_backend """
+                    } catch (Exception e) {
+                        echo 'Images are not present'
+                    }
+                }
+                
             }
             
         }
