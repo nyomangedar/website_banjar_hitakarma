@@ -5,20 +5,20 @@ services:
             context: ./frontend
             dockerfile: Dockerfile
         ports:
-            -"3000:3000"
+            - "3000:3000"
 
     backend:
         build:
-            context: ./backend # Path to the directory containing your Go backend code
-            dockerfile: Dockerfile # Path to the Dockerfile for the Go backend
+            context: ./backend
+            dockerfile: Dockerfile
         environment:
             - MONGOURI=${MONGOURI}
         ports:
-            -"8000:8000"
+            - "8000:8000"
 
     nginx:
         build:
             context: ./nginx
             dockerfile: Dockerfile
         ports:
-            -"80:80"
+            - "80:80"
