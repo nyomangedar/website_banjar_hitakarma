@@ -5,7 +5,7 @@ services:
             context: ./frontend
             dockerfile: Dockerfile
         ports:
-            -3000:3000
+            -"3000:3000"
 
     backend:
         build:
@@ -14,11 +14,11 @@ services:
         environment:
             - MONGOURI=${MONGOURI}
         ports:
-            -8000:8000
+            -"8000:8000"
 
     nginx:
         build:
             context: ./nginx
             dockerfile: Dockerfile
         ports:
-            -80:80
+            -"80:80"
