@@ -1,17 +1,17 @@
 pipeline {
     agent any
-    stages{
+    stages {
         stage('Cleaning up previous version'){
-            steps{
-                scripts{
-                    try{
+            steps {
+                script {
+                    try {
                         echo 'Stopping container'
                         sh 'docker stop $(docker ps -a -q)'
                     } catch (Exception e) {
                         echo 'No containers running'
                     }
 
-                    try{
+                    try {
                         echo 'Removing previous images'
                         sh """docker rm banjar_frontend banjar_backend """
                     } catch (Exception e) {
