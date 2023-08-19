@@ -1,9 +1,11 @@
 version: "3"
 services:
-    web:
+    frontend:
         build:
             context: ./frontend
             dockerfile: Dockerfile
+        ports:
+            -3000:3000
 
     backend:
         build:
@@ -11,3 +13,12 @@ services:
             dockerfile: Dockerfile # Path to the Dockerfile for the Go backend
         environment:
             - MONGOURI=${MONGOURI}
+        ports:
+            -8000:8000
+
+    nginx:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        ports:
+            -80:80

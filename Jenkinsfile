@@ -1,19 +1,27 @@
 pipeline {
     agent any
     stages{
-        stage('Environment Setup'){
-            steps {
-                echo 'Environment setup'
-                sh 'rm -f .env'
-                sh 'touch .env'
-                sh """
-                    echo "MONGOURI=${env.MONGOURI}" >> .env
-                """
+        stage('Cleaning up previous version'){
+            steps{
+                try{
+                    echo 'Stopping container'
+                    sh 'docker stop $(docker stop ps -a -q)'
+                } catch (Exception e) {
+                    echo 'No containers running'
+                }
+
+                try{
+                    echo 'Removing previous images'
+                    sh """docker rm banjar_frontend banjar_backend """
+                } catch (Exception e) {
+                    echo 'Images are not present'
+                }
             }
+            
         }
-        stage('Docker') {
+        stage('Building and starting new images'){
             steps {
-                sh 'docker-compose up' 
+                sh 'docker-compose up'
             }
         }
     }

@@ -18,6 +18,6 @@ type agendaResponse = {
 const BaseURL = FetchURL();
 
 const AgendaFetcher: Fetcher<agendaResponse> = (url: string) =>
-    fetch(`http://${BaseURL}:8000/${url}`).then((data) => data.json());
+    fetch(`http://${BaseURL}/${url}`).then((data) => data.json());
 
 export default AgendaFetcher;

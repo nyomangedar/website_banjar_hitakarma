@@ -50,46 +50,48 @@ const Footer: React.FC = () => {
                     </h5>
                 </div>
 
-                <table className="text-left">
-                    <tr>
-                        <th className="pr-3">
-                            <Image
-                                src="/icon/location_red.svg"
-                                alt="location"
-                                width={13}
-                                height={17}
-                            />
-                        </th>
-                        <th className="pr-3">
-                            <h6>Penataran Agung Kertha Bumi</h6>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th className="pr-3">
-                            <Image
-                                src="/icon/phone_red.svg"
-                                alt="phone"
-                                width={13}
-                                height={16}
-                            />
-                        </th>
-                        <th className="pr-3">
-                            <h6>+62 812109999999</h6>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th className="pr-3">
-                            <Image
-                                src="/icon/email_red.svg"
-                                alt="email logo"
-                                width={24}
-                                height={24}
-                            />
-                        </th>
-                        <th className="pr-3">
-                            <h6>hitakarma.pondokgede@gmail.com</h6>
-                        </th>
-                    </tr>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style={{ width: 50 }}>
+                                <Image
+                                    src="/icon/location_red.svg"
+                                    alt="location"
+                                    width={13}
+                                    height={17}
+                                />
+                            </td>
+                            <td className="pr-3">
+                                <h6>Penataran Agung Kertha Bumi</h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={{ width: 50 }}>
+                                <Image
+                                    src="/icon/phone_red.svg"
+                                    alt="phone"
+                                    width={13}
+                                    height={16}
+                                />
+                            </td>
+                            <td className="pr-3">
+                                <h6>+62 812109999999</h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style={{ width: 50 }}>
+                                <Image
+                                    src="/icon/email_red.svg"
+                                    alt="email logo"
+                                    width={24}
+                                    height={24}
+                                />
+                            </td>
+                            <td className="pr-3">
+                                <h6>hitakarma.pondokgede@gmail.com</h6>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
 
                 <div className="flex flex-col text-center">
