@@ -1,7 +1,6 @@
 "use client";
-import AgendaMiniCard from "../component/AgendaMiniCard";
 import { FetchURL } from "../component/FetchURL";
-import { Fetcher } from "swr";
+import { useEffect, useState } from "react";
 
 type agendaData = {
     title: string;
@@ -17,7 +16,22 @@ type agendaResponse = {
 
 const BaseURL = FetchURL();
 
-const AgendaFetcher: Fetcher<agendaResponse> = (url: string) =>
-    fetch(`http://${BaseURL}/${url}`).then((data) => data.json());
+const AgendaFetcher = async (url: string) => {
+    const [agenda, setAgenda] = useState<agendaResponse | null>(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response: agendaResponse = await fetch(
+                    `http://${BaseURL}/${url}`
+                ).then((data) => data.json());
+                setAgenda(response);
+            } catch (error) {
+                console.error("Fetch Error:", error);
+            }
+        };
 
+        fetchData();
+    }, []);
+    return agenda;
+};
 export default AgendaFetcher;

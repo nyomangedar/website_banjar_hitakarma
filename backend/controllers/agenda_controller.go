@@ -112,7 +112,7 @@ func PastAgenda(c *fiber.Ctx) error {
 		}
 		agendas = append(agendas, singleAgenda)
 	}
-	return c.Status(http.StatusOK).JSON(responses.AgendaResponse{Status: http.StatusOK, Message: "Success Get This Month Agenda", Data: &fiber.Map{"data": agendas}})
+	return c.Status(http.StatusOK).JSON(responses.AgendaResponse{Status: http.StatusOK, Message: "Success Get Past Agendas", Data: &fiber.Map{"data": agendas}})
 
 }
 

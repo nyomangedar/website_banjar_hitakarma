@@ -1,15 +1,11 @@
 "use client";
 import AgendaFetcher from "../AgendaFetch";
-import useSWR from "swr";
 import AgendaMiniCard from "@/app/component/AgendaMiniCard";
 const FETCH_URL_AGENDA_YANG_LEWAT = "agenda-yang-lewat";
 
 const AgendaBulanIni: React.FC = async () => {
-    const { data, isLoading } = useSWR(
-        FETCH_URL_AGENDA_YANG_LEWAT,
-        AgendaFetcher
-    );
-    const content = data?.data.data.map((agenda) => {
+    const agendas = await AgendaFetcher(FETCH_URL_AGENDA_YANG_LEWAT);
+    const content = agendas?.data.data.map((agenda) => {
         return <AgendaMiniCard key={agenda.title} />;
     });
     return (

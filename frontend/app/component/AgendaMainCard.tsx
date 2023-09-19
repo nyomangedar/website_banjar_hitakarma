@@ -35,64 +35,68 @@ const AgendaMainCard: React.FC = () => {
                     Sembahyang Ngiring Pekuluh: Pura Ciangsana
                 </h4>
                 <table className="text-left">
-                    <tr className="font-normal">
-                        <th className="pr-6">
-                            <Image
-                                src="/icon/carbon_time_red.svg"
-                                alt="time"
-                                width={16}
-                                height={17}
-                            />
-                        </th>
-                        <th className="">
-                            <h6 style={{ color: "#4D4C4C" }}>15.00 - 17.00</h6>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th className="pr-6">
-                            <Image
-                                src="/icon/location_red.svg"
-                                alt="location from"
-                                width={16}
-                                height={17}
-                            />
-                        </th>
-                        <th>
-                            <h6 style={{ color: "#4D4C4C" }}>
-                                Dari Pura Penataran Agung Kertha Bumi
-                            </h6>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th className="pr-6">
-                            <Image
-                                src="/icon/location_red.svg"
-                                alt="location to"
-                                width={16}
-                                height={17}
-                            />
-                        </th>
-                        <th>
-                            <h6 style={{ color: "#4D4C4C" }}>
-                                Ke Pura Ciangsana
-                            </h6>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th className="pr-6">
-                            <Image
-                                src="/icon/phone_red.svg"
-                                alt="phone"
-                                width={16}
-                                height={17}
-                            />
-                        </th>
-                        <th>
-                            <h6 style={{ color: "#4D4C4C" }}>
-                                +62812109999999
-                            </h6>
-                        </th>
-                    </tr>
+                    <tbody>
+                        <tr className="font-normal">
+                            <th className="pr-6">
+                                <Image
+                                    src="/icon/carbon_time_red.svg"
+                                    alt="time"
+                                    width={16}
+                                    height={17}
+                                />
+                            </th>
+                            <th className="">
+                                <h6 style={{ color: "#4D4C4C" }}>
+                                    15.00 - 17.00
+                                </h6>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th className="pr-6">
+                                <Image
+                                    src="/icon/location_red.svg"
+                                    alt="location from"
+                                    width={16}
+                                    height={17}
+                                />
+                            </th>
+                            <th>
+                                <h6 style={{ color: "#4D4C4C" }}>
+                                    Dari Pura Penataran Agung Kertha Bumi
+                                </h6>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th className="pr-6">
+                                <Image
+                                    src="/icon/location_red.svg"
+                                    alt="location to"
+                                    width={16}
+                                    height={17}
+                                />
+                            </th>
+                            <th>
+                                <h6 style={{ color: "#4D4C4C" }}>
+                                    Ke Pura Ciangsana
+                                </h6>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th className="pr-6">
+                                <Image
+                                    src="/icon/phone_red.svg"
+                                    alt="phone"
+                                    width={16}
+                                    height={17}
+                                />
+                            </th>
+                            <th>
+                                <h6 style={{ color: "#4D4C4C" }}>
+                                    +62812109999999
+                                </h6>
+                            </th>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
 
