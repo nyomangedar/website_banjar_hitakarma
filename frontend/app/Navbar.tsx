@@ -22,7 +22,6 @@ export default function Navbar() {
             state[index] = true;
         }
         setdropdown(state);
-        console.log({ dropdownActive });
     };
 
     const handleClickOutside = () => {

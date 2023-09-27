@@ -17,6 +17,6 @@ type Agenda struct {
 	Pinandita    []string  `json:"pinandita,omitempty"`
 	Pelaksana    []string  `json:"pelaksana,omitempty"`
 	Tkumpul      string    `json:"tkumpul,omitempty"`
-	Catatan      []string  `json:"catatan,omitempty"`
+	Catatan      string    `json:"catatan,omitempty"`
 	Transport    []string  `json:"transport,omitempty"`
 }
