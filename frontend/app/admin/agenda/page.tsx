@@ -7,7 +7,7 @@ type IFormInput = {
     TimeFrom: Date;
     TimeUntil: Date | null;
     Desc: String;
-    Date: Date;
+    Date: string;
     LocationFrom: String;
     LocationTo: String | null;
     Contact: String;
@@ -19,7 +19,7 @@ type IFormInput = {
 };
 
 const AdminAgenda = () => {
-    const { register, handleSubmit, control } = useForm<IFormInput>();
+    const { register, handleSubmit, control, setValue } = useForm<IFormInput>();
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         console.log(await AgendaFetchPost(data));
     };
@@ -112,6 +112,7 @@ const AdminAgenda = () => {
                     <input
                         type="date"
                         {...register("Date", { required: true })}
+                        defaultValue={new Date().toISOString().split("T")[0]}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>

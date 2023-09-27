@@ -16,22 +16,23 @@ type agendaResponse = {
 
 const BaseURL = FetchURL();
 
-const AgendaFetcher = async (url: string) => {
-    const [agenda, setAgenda] = useState<agendaResponse | null>(null);
+const AgendaFetcher = (url: string) => {
+    const [agendas, setAgenda] = useState<agendaResponse | null>(null);
+    const [isLoading, setLoading] = useState(false);
+    const [isError, setError] = useState(false);
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response: agendaResponse = await fetch(
-                    `http://${BaseURL}/${url}`
-                ).then((data) => data.json());
-                setAgenda(response);
-            } catch (error) {
-                console.error("Fetch Error:", error);
-            }
-        };
-
-        fetchData();
+        setLoading(true);
+        fetch(`http://${BaseURL}/${url}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setAgenda(data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error);
+                setLoading(false);
+            });
     }, []);
-    return agenda;
+    return { agendas, isLoading, isError };
 };
 export default AgendaFetcher;

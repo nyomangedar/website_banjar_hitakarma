@@ -5,7 +5,7 @@ type IFormInput = {
     TimeFrom: Date;
     TimeUntil: Date | null;
     Desc: String;
-    Date: Date;
+    Date: string;
     LocationFrom: String;
     LocationTo: String | null;
     Contact: String;
@@ -24,7 +24,8 @@ type response = {
 const BaseURL = FetchURL();
 const PostAgendaURL = "agenda";
 const AgendaFetchPost = async (data: IFormInput) => {
-    console.log("function trigger");
+    const ISODate = new Date(data.Date).toISOString();
+    data.Date = ISODate;
     try {
         const res: response = await fetch(
             `http://${BaseURL}/${PostAgendaURL}`,

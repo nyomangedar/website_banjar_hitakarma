@@ -33,12 +33,11 @@ func CreateAgenda(c *fiber.Ctx) error {
 	}
 
 	newAgenda := models.Agenda{
-		Title:     agenda.Title,
-		TimeFrom:  agenda.TimeFrom,
-		TimeUntil: agenda.TimeUntil,
-		Desc:      agenda.Desc,
-		// TODO: Change date to input user
-		Date:         time.Now(),
+		Title:        agenda.Title,
+		TimeFrom:     agenda.TimeFrom,
+		TimeUntil:    agenda.TimeUntil,
+		Desc:         agenda.Desc,
+		Date:         agenda.Date,
 		LocationFrom: agenda.LocationFrom,
 		LocationTo:   agenda.LocationTo,
 		Contact:      agenda.Contact,
@@ -127,7 +126,7 @@ func getFirstDayInMonth() time.Time {
 
 func getLastDayInMonth() time.Time {
 	firstOfMonth := getFirstDayInMonth()
-	lastOfMonth := firstOfMonth.AddDate(0, 1, -1)
+	lastOfMonth := firstOfMonth.AddDate(0, 1, 0)
 	fmt.Println(lastOfMonth)
 	return lastOfMonth
 }
