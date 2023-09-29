@@ -1,4 +1,10 @@
-const AgendaMiniCard: React.FC = () => {
+import AgendaType from "../models/AgendaModel";
+import { BreakdownISODate } from "./ParseDate";
+
+type AgendaMiniCard = Pick<AgendaType, "title" | "date">;
+
+const AgendaMiniCard: React.FC<AgendaMiniCard> = ({ title, date }) => {
+    const { year, month, day } = BreakdownISODate(date);
     return (
         <div
             className="flex justify-center items-center gap-2"
@@ -13,12 +19,12 @@ const AgendaMiniCard: React.FC = () => {
                 }}
                 className="flex flex-col justify-around text-center"
             >
-                <h6 className="font-extrabold">18 Maret</h6>
-                <h6 className="font-extrabold">2023</h6>
+                <h6 className="font-extrabold">
+                    {day} {month}
+                </h6>
+                <h6 className="font-extrabold">{year}</h6>
             </div>
-            <h6 style={{ width: 203 }}>
-                Sembahyang Ngiring Pekuluh: Pura Ciangsana
-            </h6>
+            <h6 style={{ width: 203 }}>{title}</h6>
         </div>
     );
 };

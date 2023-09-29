@@ -1,20 +1,5 @@
 import { FetchURL } from "@/app/component/FetchURL";
-
-type IFormInput = {
-    Title: String;
-    TimeFrom: Date;
-    TimeUntil: Date | null;
-    Desc: String;
-    Date: string;
-    LocationFrom: String;
-    LocationTo: String | null;
-    Contact: String;
-    Pinandita: String[];
-    Pelaksana: String[] | null;
-    Tkumpul: String | null;
-    Catatan: String[] | null;
-    Transport: String[] | null;
-};
+import AgendaType from "@/app/models/AgendaModel";
 
 type response = {
     Status: number;
@@ -23,9 +8,9 @@ type response = {
 
 const BaseURL = FetchURL();
 const PostAgendaURL = "agenda";
-const AgendaFetchPost = async (data: IFormInput) => {
-    const ISODate = new Date(data.Date).toISOString();
-    data.Date = ISODate;
+const AgendaFetchPost = async (data: AgendaType) => {
+    const ISODate = new Date(data.date).toISOString();
+    data.date = ISODate;
     try {
         const res: response = await fetch(
             `http://${BaseURL}/${PostAgendaURL}`,

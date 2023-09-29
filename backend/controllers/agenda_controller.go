@@ -65,7 +65,6 @@ func CurrentMonthAgenda(c *fiber.Ctx) error {
 	filter := bson.M{
 		"date": bson.M{
 			"$gte": getFirstDayInMonth(),
-			"$lte": getLastDayInMonth(),
 		},
 	}
 

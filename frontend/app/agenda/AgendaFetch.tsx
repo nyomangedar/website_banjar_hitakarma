@@ -1,16 +1,13 @@
 "use client";
 import { FetchURL } from "../component/FetchURL";
 import { useEffect, useState } from "react";
-
-type agendaData = {
-    title: string;
-};
+import AgendaType from "../models/AgendaModel";
 
 type agendaResponse = {
     message: string;
     status: string;
     data: {
-        data: agendaData[];
+        data: AgendaType[];
     };
 };
 

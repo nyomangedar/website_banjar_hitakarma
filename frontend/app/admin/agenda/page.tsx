@@ -1,26 +1,11 @@
 "use client";
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import AgendaFetchPost from "./AgendaFetchPost";
-
-type IFormInput = {
-    Title: String;
-    TimeFrom: Date;
-    TimeUntil: Date | null;
-    Desc: String;
-    Date: string;
-    LocationFrom: String;
-    LocationTo: String | null;
-    Contact: String;
-    Pinandita: String[];
-    Pelaksana: String[] | null;
-    Tkumpul: String | null;
-    Catatan: String[] | null;
-    Transport: String[] | null;
-};
+import AgendaType from "@/app/models/AgendaModel";
 
 const AdminAgenda = () => {
-    const { register, handleSubmit, control, setValue } = useForm<IFormInput>();
-    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    const { register, handleSubmit, control, setValue } = useForm<AgendaType>();
+    const onSubmit: SubmitHandler<AgendaType> = async (data) => {
         console.log(await AgendaFetchPost(data));
     };
     const {
@@ -29,7 +14,7 @@ const AdminAgenda = () => {
         remove: removePinandita,
     } = useFieldArray({
         control,
-        name: "Pinandita",
+        name: "pinandita",
     });
 
     const {
@@ -38,7 +23,7 @@ const AdminAgenda = () => {
         remove: removePelaksana,
     } = useFieldArray({
         control,
-        name: "Pelaksana",
+        name: "pelaksana",
     });
 
     const {
@@ -47,11 +32,11 @@ const AdminAgenda = () => {
         remove: removeTransport,
     } = useFieldArray({
         control,
-        name: "Transport",
+        name: "transport",
     });
 
     const fieldArrayComponent = (
-        attribute: "Pinandita" | "Pelaksana" | "Transport",
+        attribute: "pinandita" | "pelaksana" | "transport",
         fields: Array<any>,
         append: Function,
         remove: Function,
@@ -96,14 +81,14 @@ const AdminAgenda = () => {
                 <div>
                     <label>Title</label>
                     <input
-                        {...register("Title", { required: true })}
+                        {...register("title", { required: true })}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
                 <div>
                     <label>Desc</label>
                     <input
-                        {...register("Desc", { required: true })}
+                        {...register("desc", { required: true })}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
@@ -111,7 +96,7 @@ const AdminAgenda = () => {
                     <label>Date</label>
                     <input
                         type="date"
-                        {...register("Date", { required: true })}
+                        {...register("date", { required: true })}
                         defaultValue={new Date().toISOString().split("T")[0]}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -119,7 +104,7 @@ const AdminAgenda = () => {
                 <div>
                     <label>TimeFrom</label>
                     <input
-                        {...register("TimeFrom", { required: true })}
+                        {...register("timeFrom", { required: true })}
                         type="time"
                         min="00:00"
                         max="23:59"
@@ -129,7 +114,7 @@ const AdminAgenda = () => {
                 <div>
                     <label>TimeUntil</label>
                     <input
-                        {...register("TimeUntil", { required: false })}
+                        {...register("timeUntil", { required: false })}
                         type="time"
                         min="00:00"
                         max="23:59"
@@ -139,27 +124,27 @@ const AdminAgenda = () => {
                 <div>
                     <label>LocationFrom</label>
                     <input
-                        {...register("LocationFrom", { required: true })}
+                        {...register("locationFrom", { required: true })}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
                 <div>
                     <label>LocationTo</label>
                     <input
-                        {...register("LocationTo", { required: false })}
+                        {...register("locationTo", { required: false })}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
                 <div>
                     <label>Contact</label>
                     <input
-                        {...register("Contact", { required: true })}
+                        {...register("contact", { required: true })}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
                 <div className="flex flex-col gap-1">
                     {fieldArrayComponent(
-                        "Pinandita",
+                        "pinandita",
                         fieldsPinandita,
                         appendPinandita,
                         removePinandita,
@@ -168,7 +153,7 @@ const AdminAgenda = () => {
                 </div>
                 <div className="flex flex-col gap-1">
                     {fieldArrayComponent(
-                        "Pelaksana",
+                        "pelaksana",
                         fieldsPelaksana,
                         appendPelaksana,
                         removePelaksana,
@@ -178,13 +163,13 @@ const AdminAgenda = () => {
                 <div>
                     <label>Tkumpul</label>
                     <input
-                        {...register("Tkumpul", { required: false })}
+                        {...register("tkumpul", { required: false })}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
                 <div className="flex flex-col gap-1">
                     {fieldArrayComponent(
-                        "Transport",
+                        "transport",
                         fieldsTransport,
                         appendTransport,
                         removeTransport,
@@ -194,7 +179,7 @@ const AdminAgenda = () => {
                 <div>
                     <label>Catatan</label>
                     <input
-                        {...register("Catatan", { required: false })}
+                        {...register("catatan", { required: false })}
                         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
