@@ -12,6 +12,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	// "go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -54,6 +55,52 @@ func CreateAgenda(c *fiber.Ctx) error {
 	}
 
 	return c.Status(http.StatusCreated).JSON(responses.AgendaResponse{Status: http.StatusCreated, Message: "Agenda Successfully Created", Data: &fiber.Map{"data": result}})
+}
+
+// Get specific agenda
+func GetAgenda(c *fiber.Ctx) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	var agenda models.Agenda
+	defer cancel()
+
+	id := c.Params("id")
+
+	objectId, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		return c.Status(http.StatusBadRequest).JSON(responses.AgendaResponse{
+			Status:  http.StatusBadRequest,
+			Message: "Bad Id request",
+			Data:    &fiber.Map{"data": err},
+		})
+	}
+
+	filter := bson.M{
+		"_id": objectId,
+	}
+
+	result := agendaCollection.FindOne(ctx, filter)
+
+	if result.Err() != nil {
+		return c.Status(http.StatusInternalServerError).JSON(responses.AgendaResponse{
+			Status:  http.StatusInternalServerError,
+			Message: "Error finding agenda",
+			Data:    &fiber.Map{"data": result.Err()}})
+	}
+
+	if err := result.Decode(&agenda); err != nil {
+		return c.Status(http.StatusInternalServerError).JSON(responses.AgendaResponse{
+			Status:  http.StatusInternalServerError,
+			Message: "Selected Agenda corrupterd",
+			Data:    &fiber.Map{"data": err},
+		})
+	}
+
+	return c.Status(http.StatusOK).JSON(responses.AgendaResponse{
+		Status:  http.StatusOK,
+		Message: "Succesful return agenda",
+		Data:    &fiber.Map{"data": agenda},
+	})
+
 }
 
 // Get current month agenda

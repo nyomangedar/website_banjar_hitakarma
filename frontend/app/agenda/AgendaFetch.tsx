@@ -11,6 +11,14 @@ type agendaResponse = {
     };
 };
 
+type agendaResponseSingle = {
+    message: string;
+    status: string;
+    data: {
+        data: AgendaType;
+    };
+};
+
 const BaseURL = FetchURL();
 
 const AgendaFetcher = (url: string) => {
@@ -32,4 +40,24 @@ const AgendaFetcher = (url: string) => {
     }, []);
     return { agendas, isLoading, isError };
 };
-export default AgendaFetcher;
+
+const AgendaFetcherSingle = (url: string) => {
+    const [agenda, setAgenda] = useState<agendaResponseSingle | null>(null);
+    const [isLoading, setLoading] = useState(false);
+    const [isError, setError] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        fetch(`http://${BaseURL}/${url}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setAgenda(data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error);
+                setLoading(false);
+            });
+    }, []);
+    return { agenda, isLoading, isError };
+};
+export { AgendaFetcher, AgendaFetcherSingle };

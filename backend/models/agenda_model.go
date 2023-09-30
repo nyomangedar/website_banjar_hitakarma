@@ -5,7 +5,6 @@ import (
 )
 
 type Agenda struct {
-	Id           string    `json:"id,omitempty"`
 	Title        string    `json:"title,omitempty" validate:"required"`
 	TimeFrom     string    `json:"timeFrom,omitempty" validate:"required"`
 	TimeUntil    string    `json:"timeUntil,omitempty"`
