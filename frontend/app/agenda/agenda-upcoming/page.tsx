@@ -2,10 +2,10 @@
 import { AgendaFetcher } from "../AgendaFetch";
 import AgendaMiniCard from "@/app/component/AgendaMiniCard";
 
-const AgendaLewat = () => {
-    const FETCH_URL_AGENDA_YANG_LEWAT = "agenda-yang-lewat";
+const AgendaBulanIni = () => {
+    const FETCH_URL_AGENDA_BULAN_INI = "agenda-upcoming";
     const { isLoading, isError, agendas } = AgendaFetcher(
-        FETCH_URL_AGENDA_YANG_LEWAT
+        FETCH_URL_AGENDA_BULAN_INI
     );
     const listAgenda = agendas?.data.data;
     let content;
@@ -27,7 +27,7 @@ const AgendaLewat = () => {
         content = (
             <>
                 <h2>
-                    Agenda sebelumnya masih kosong, Harap hubungi pihak banjar
+                    Agenda kedepan masih kosong, Harap hubungi pihak banjar
                     untuk informasi lebih lanjut
                 </h2>
             </>
@@ -39,10 +39,10 @@ const AgendaLewat = () => {
             className="grid"
             style={{ marginTop: 224, padding: "0 150px 0 150px" }}
         >
-            <h1>AGENDA YANG LEWAT</h1>
+            <h1>AGENDA BULAN INI</h1>
             {content}
         </div>
     );
 };
 
-export default AgendaLewat;
+export default AgendaBulanIni;

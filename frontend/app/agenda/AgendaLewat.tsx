@@ -1,5 +1,5 @@
 import AgendaMiniCard from "../component/AgendaMiniCard";
-import AgendaFetcher from "./AgendaFetch";
+import { AgendaFetcher } from "./AgendaFetch";
 
 const FETCH_URL_AGENDA_YANG_LEWAT = "agenda-yang-lewat";
 
@@ -23,6 +23,7 @@ const AgendaLewat: React.FC = () => {
                         key={index}
                         title={agenda.title}
                         date={agenda.date}
+                        _id={agenda._id}
                     />
                 );
             });
@@ -30,8 +31,8 @@ const AgendaLewat: React.FC = () => {
     } else {
         return (
             <div className="flex justify-between">
-                Belum Ada Agenda Yang Selesai, silahkan hubungi kontak kami
-                untuk informasi lebih lanjut.
+                Belum ada agenda yang selesai, sliakan hubungi kontak kami untuk
+                informasi lebih lanjut.
             </div>
         );
     }

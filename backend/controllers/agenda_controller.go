@@ -103,15 +103,15 @@ func GetAgenda(c *fiber.Ctx) error {
 
 }
 
-// Get current month agenda
-func CurrentMonthAgenda(c *fiber.Ctx) error {
+// Get upcoming agenda
+func UpcomingAgenda(c *fiber.Ctx) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	var agendas []models.Agenda
 	defer cancel()
 
 	filter := bson.M{
 		"date": bson.M{
-			"$gte": getFirstDayInMonth(),
+			"$gte": time.Now(),
 		},
 	}
 
@@ -139,9 +139,10 @@ func PastAgenda(c *fiber.Ctx) error {
 	var agendas []models.Agenda
 	defer cancel()
 
-	currentTime := time.Now()
 	filter := bson.M{
-		"date": bson.M{"lt": currentTime},
+		"date": bson.M{
+			"$lte": time.Now(),
+		},
 	}
 
 	results, err := agendaCollection.Find(ctx, filter)

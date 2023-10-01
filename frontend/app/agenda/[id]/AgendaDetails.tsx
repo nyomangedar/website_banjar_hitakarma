@@ -1,4 +1,6 @@
+import AgendaCardDetails from "@/app/component/AgendaCardDetails";
 import AgendaMainCard from "@/app/component/AgendaMainCard";
+import { BreakdownISODate } from "@/app/component/ParseDate";
 import AgendaType from "@/app/models/AgendaModel";
 import Image from "next/image";
 
@@ -18,25 +20,44 @@ const AgendaDetails: React.FC<AgendaType> = ({
     transport,
 }) => {
     const listComponents = (component: String[] | null) => {
-        var content;
         if (component && component.length > 0) {
-            content = component.map((data) => {
-                <li>{data}</li>;
-            });
+            return component.map((data, index: number) => (
+                <li key={index}>{data}</li>
+            ));
         } else {
             return null;
         }
     };
 
+    const { day, month, year } = BreakdownISODate(date);
+
     return (
-        <div style={{ marginTop: 224, padding: "0 150px 0 150px" }}>
-            <h1>AGENDA</h1>
+        <div>
+            <div className="flex flex-col gap-10">
+                <h4 className="font-bold">{title}</h4>
 
-            <div>
-                <h4>{title}</h4>
-
-                <div>
-                    <AgendaMainCard />
+                <div className="flex justify-between">
+                    <AgendaCardDetails
+                        timeFrom={timeFrom}
+                        timeUntil={timeUntil}
+                        locationFrom={locationFrom}
+                        locationTo={locationTo}
+                        contact={contact}
+                    />
+                    <div
+                        style={{
+                            height: 189,
+                            width: 189,
+                            backgroundColor: "#9A0000",
+                            color: "white",
+                        }}
+                        className="flex flex-col justify-around text-center"
+                    >
+                        <h5 className="font-extrabold">
+                            {day} {month}
+                        </h5>
+                        <h5 className="font-extrabold">{year}</h5>
+                    </div>
                 </div>
 
                 <p>
@@ -48,34 +69,50 @@ const AgendaDetails: React.FC<AgendaType> = ({
                     malesuada venenatis ligula vel ornare.
                 </p>
 
-                <div>
-                    <h4>PINANDITA</h4>
-                    <ul>{listComponents(pinandita)}</ul>
-                </div>
+                {pinandita && (
+                    <div>
+                        <h4 className="font-bold">PINANDITA</h4>
+                        <ul className="list-disc">
+                            {listComponents(pinandita)}
+                        </ul>
+                    </div>
+                )}
 
-                <div>
-                    <h4>PELAKSANA</h4>
-                    <ul>{listComponents(pelaksana)}</ul>
-                </div>
+                {pelaksana && (
+                    <div>
+                        <h4 className="font-bold">PELAKSANA</h4>
+                        <ul className="list-disc">
+                            {listComponents(pelaksana)}
+                        </ul>
+                    </div>
+                )}
 
-                <div>
-                    <h4>TITIK KUMPUL</h4>
-                    <ul>
-                        <li>{tkumpul}</li>
-                    </ul>
-                </div>
+                {tkumpul && (
+                    <div>
+                        <h4 className="font-bold">TITIK KUMPUL</h4>
+                        <ul className="list-disc">
+                            <li>{tkumpul}</li>
+                        </ul>
+                    </div>
+                )}
 
-                <div>
-                    <h4>TRANSPORTASI</h4>
-                    <ul>{transport}</ul>
-                </div>
+                {transport && (
+                    <div>
+                        <h4 className="font-bold">TRANSPORTASI</h4>
+                        <ul className="list-disc">
+                            {listComponents(transport)}
+                        </ul>
+                    </div>
+                )}
 
-                <div>
-                    <h4>CATATAN</h4>
-                    <ul>
-                        <li>{catatan}</li>
-                    </ul>
-                </div>
+                {catatan && (
+                    <div>
+                        <h4 className="font-bold">CATATAN</h4>
+                        <ul className="list-disc">
+                            <li>{catatan}</li>
+                        </ul>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 "use client";
-import AgendaFetcher from "./AgendaFetch";
+import { AgendaFetcher } from "./AgendaFetch";
 
 import AgendaMiniCard from "../component/AgendaMiniCard";
 
-const FETCH_URL_AGENDA_BULAN_INI = "agenda-bulan-ini";
+const FETCH_URL_AGENDA_BULAN_INI = "agenda-upcoming";
 
 const AgendaBulanIni: React.FC = () => {
     const { isLoading, isError, agendas } = AgendaFetcher(
@@ -26,6 +26,7 @@ const AgendaBulanIni: React.FC = () => {
                         key={index}
                         title={agenda.title}
                         date={agenda.date}
+                        _id={agenda._id}
                     />
                 );
             });
@@ -33,8 +34,8 @@ const AgendaBulanIni: React.FC = () => {
     } else {
         return (
             <div className="flex justify-between">
-                Belum Ada Agenda Untuk Bulan Ini, Silahkan Hubungi Kontak Kami
-                Untuk Informasi Lebih Lanjut.
+                Belum ada agenda untuk kedepannya, silahkan hubungi kontak kami
+                untuk informasi lebih lanjut.
             </div>
         );
     }

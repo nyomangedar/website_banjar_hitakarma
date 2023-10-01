@@ -1,4 +1,5 @@
 type AgendaType = {
+    _id: String;
     title: String;
     timeFrom: Date;
     timeUntil: Date | null;

@@ -46,25 +46,25 @@ const AgendaCardDetails: React.FC<AgendaCardDetails> = ({
                         </h6>
                     </th>
                 </tr>
-                <tr>
-                    <th className="pr-6">
-                        <Image
-                            src="/icon/location_red.svg"
-                            alt="location to"
-                            width={16}
-                            height={17}
-                        />
-                    </th>
-                    {locationTo && (
-                        <>
-                            <th>
-                                <h6 style={{ color: "#4D4C4C" }}>
-                                    Ke {locationTo}
-                                </h6>
-                            </th>
-                        </>
-                    )}
-                </tr>
+                {locationTo && (
+                    <tr>
+                        <th className="pr-6">
+                            <Image
+                                src="/icon/location_red.svg"
+                                alt="location to"
+                                width={16}
+                                height={17}
+                            />
+                        </th>
+
+                        <th>
+                            <h6 style={{ color: "#4D4C4C" }}>
+                                Ke {locationTo}
+                            </h6>
+                        </th>
+                    </tr>
+                )}
+
                 <tr>
                     <th className="pr-6">
                         <Image

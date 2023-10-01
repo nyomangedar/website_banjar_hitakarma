@@ -1,6 +1,5 @@
 "use client";
-import AgendaType from "@/app/models/AgendaModel";
-import { AgendaFetcher, AgendaFetcherSingle } from "../AgendaFetch";
+import { AgendaFetcherSingle } from "../AgendaFetch";
 import AgendaDetails from "./AgendaDetails";
 const SelectedAgenda: React.FC<{ params: { id: string } }> = ({ params }) => {
     const GET_FETCH_URL = `agenda/${params.id}`;
@@ -16,6 +15,7 @@ const SelectedAgenda: React.FC<{ params: { id: string } }> = ({ params }) => {
         const agendaParam = agenda.data.data;
         content = (
             <AgendaDetails
+                _id={agendaParam._id}
                 title={agendaParam.title}
                 timeFrom={agendaParam.timeFrom}
                 timeUntil={agendaParam.timeUntil}

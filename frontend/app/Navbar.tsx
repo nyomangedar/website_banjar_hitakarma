@@ -6,6 +6,7 @@ import vector from "./asset/Vector.svg";
 import NavbarLinks from "./component/NavbarLinks";
 import { useRef, useState, useEffect } from "react";
 import { useOnClickOutside } from "usehooks-ts";
+import Link from "next/link";
 
 export default function Navbar() {
     const [dropdownActive, setdropdown] = useState([
@@ -39,17 +40,19 @@ export default function Navbar() {
                         padding: "10px 100px 10px 50px",
                     }}
                 >
-                    <Image src={logo} width={260} height={70} alt="logo" />
+                    <Link href={"/"}>
+                        <Image src={logo} width={260} height={70} alt="logo" />
+                    </Link>
                     <div className="flex items-center gap-7" ref={dropdownRef}>
                         <NavbarLinks
                             name="BANJAR"
                             active={dropdownActive[0]}
                             dropdown={true}
                             links={[
-                                ["Banjar Hitakarma", "banjar"],
-                                ["Banjar Jabodetabek", "banjarJabodetabek"],
-                                ["Yayasan Banjar Hitakarma", "yayasan"],
-                                ["Pasraman Purna Lingga", "pasraman"],
+                                ["Banjar Hitakarma", "/banjar"],
+                                ["Banjar Jabodetabek", "/banjarJabodetabek"],
+                                ["Yayasan Banjar Hitakarma", "/yayasan"],
+                                ["Pasraman Purna Lingga", "/pasraman"],
                             ]}
                             onButtonClicks={() => activateDropdown(0)}
                         />
@@ -59,8 +62,8 @@ export default function Navbar() {
                             active={dropdownActive[2]}
                             dropdown={true}
                             links={[
-                                ["PWHD", "pwhd"],
-                                ["PPHD", "pphd"],
+                                ["PWHD", "/pwhd"],
+                                ["PPHD", "/pphd"],
                             ]}
                             onButtonClicks={() => activateDropdown(2)}
                         />
@@ -69,8 +72,8 @@ export default function Navbar() {
                             active={dropdownActive[3]}
                             dropdown={true}
                             links={[
-                                ["Agenda", "agenda"],
-                                ["Artikel", "artikel"],
+                                ["Agenda", "/agenda"],
+                                ["Artikel", "/artikel"],
                             ]}
                             onButtonClicks={() => activateDropdown(3)}
                         />
@@ -79,9 +82,9 @@ export default function Navbar() {
                             active={dropdownActive[4]}
                             dropdown={true}
                             links={[
-                                ["Alamant dan Kontak", "alamat"],
-                                ["Donasi", "donasi"],
-                                ["FAQ", "faq"],
+                                ["Alamant dan Kontak", "/alamat"],
+                                ["Donasi", "/donasi"],
+                                ["FAQ", "/faq"],
                             ]}
                             onButtonClicks={() => activateDropdown(4)}
                         />
