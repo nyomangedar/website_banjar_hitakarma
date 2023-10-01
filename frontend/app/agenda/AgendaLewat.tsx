@@ -27,10 +27,10 @@ const AgendaLewat: React.FC = () => {
                     />
                 );
             });
-        return <div className="flex justify-between">{content}</div>;
+        return <div className="grid grid-cols-3">{content}</div>;
     } else {
         return (
-            <div className="flex justify-between">
+            <div>
                 Belum ada agenda yang selesai, sliakan hubungi kontak kami untuk
                 informasi lebih lanjut.
             </div>

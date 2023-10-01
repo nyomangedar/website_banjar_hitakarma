@@ -34,7 +34,7 @@ const AgendaDetails: React.FC<AgendaType> = ({
     return (
         <div>
             <div className="flex flex-col gap-10">
-                <h4 className="font-bold">{title}</h4>
+                <h4 className="font-bold uppercase font-extrabold">{title}</h4>
 
                 <div className="flex justify-between">
                     <AgendaCardDetails
@@ -60,14 +60,7 @@ const AgendaDetails: React.FC<AgendaType> = ({
                     </div>
                 </div>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    dapibus ex mi, a elementum diam vestibulum eget. Maecenas et
-                    suscipit velit. Vivamus tincidunt lorem id dictum pretium.
-                    Mauris non auctor ex. Ut vel justo enim. Sed nec augue
-                    posuere orci tempor ultricies sit amet vitae leo. Curabitur
-                    malesuada venenatis ligula vel ornare.
-                </p>
+                <p>{desc}</p>
 
                 {pinandita && (
                     <div>

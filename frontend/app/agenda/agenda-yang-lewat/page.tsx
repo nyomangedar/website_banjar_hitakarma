@@ -1,6 +1,7 @@
 "use client";
 import { AgendaFetcher } from "../AgendaFetch";
 import AgendaMiniCard from "@/app/component/AgendaMiniCard";
+import Breadcrumb from "@/app/component/Breadcrumb";
 
 const AgendaLewat = () => {
     const FETCH_URL_AGENDA_YANG_LEWAT = "agenda-yang-lewat";
@@ -35,12 +36,13 @@ const AgendaLewat = () => {
     }
 
     return (
-        <div
-            className="grid"
-            style={{ marginTop: 224, padding: "0 150px 0 150px" }}
-        >
-            <h1>AGENDA YANG LEWAT</h1>
-            {content}
+        <div style={{ margin: "224px 0 224px 0", padding: "0 150px 0 150px" }}>
+            <h1>AGENDA YANG AKAN DATANG</h1>
+            <Breadcrumb
+                path={["AGENDA", "AGENDA YANG AKAN DATANG"]}
+                links={["/agenda"]}
+            />
+            <div className="grid grid-cols-3 mt-10">{content}</div>
         </div>
     );
 };

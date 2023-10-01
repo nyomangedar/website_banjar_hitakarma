@@ -30,10 +30,10 @@ const AgendaBulanIni: React.FC = () => {
                     />
                 );
             });
-        return <div className="flex justify-between">{content}</div>;
+        return <div className="grid grid-cols-3">{content}</div>;
     } else {
         return (
-            <div className="flex justify-between">
+            <div className="grid">
                 Belum ada agenda untuk kedepannya, silahkan hubungi kontak kami
                 untuk informasi lebih lanjut.
             </div>

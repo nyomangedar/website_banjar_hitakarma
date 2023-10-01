@@ -2,11 +2,18 @@
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import AgendaFetchPost from "./AgendaFetchPost";
 import AgendaType from "@/app/models/AgendaModel";
+import ValidateFieldArray from "./ValidateFieldArray";
 
 const AdminAgenda = () => {
-    const { register, handleSubmit, control, setValue } = useForm<AgendaType>();
+    const { register, handleSubmit, control, setValue, setError } =
+        useForm<AgendaType>();
     const onSubmit: SubmitHandler<AgendaType> = async (data) => {
-        console.log(await AgendaFetchPost(data));
+        const { isValid, error } = ValidateFieldArray(data);
+        if (isValid) {
+            console.log(await AgendaFetchPost(data));
+        }
+        console.log("error");
+        setError(error, { type: "custom", message: `error in ${error}` });
     };
     const {
         fields: fieldsPinandita,
