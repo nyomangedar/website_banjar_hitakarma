@@ -1,8 +1,5 @@
-import { Transforms } from "slate";
 import { useSlateStatic } from "slate-react";
-import { ImageElement } from "@/app/utils/customEditor";
-import isUrl from "is-url";
-import imageExtensions from "image-extensions";
+import { isImageUrl, insertImage } from "@/app/utils/customEditor";
 
 const InsertImageButton: React.FC<{
     icon: string;
@@ -23,19 +20,6 @@ const InsertImageButton: React.FC<{
             {icon}
         </button>
     );
-};
-
-const insertImage = (editor: any, url: string) => {
-    const text = { text: "" };
-    const image: ImageElement = { type: "image", url, children: [text] };
-    Transforms.insertNodes(editor, image);
-};
-
-const isImageUrl = (url) => {
-    if (!url) return false;
-    if (!isUrl(url)) return false;
-    const ext = new URL(url).pathname.split(".").pop();
-    return imageExtensions.includes(ext);
 };
 
 export default InsertImageButton;

@@ -1,3 +1,4 @@
+"use client";
 import { useCallback } from "react";
 import { Transforms } from "slate";
 import {
@@ -7,9 +8,7 @@ import {
     useSlateStatic,
 } from "slate-react";
 
-export const renderElement = useCallback((props) => <Element {...props} />, []);
-
-const Element = ({ attributes, children, element }) => {
+export const Element = ({ attributes, children, element }) => {
     const style = { textAlign: element.align };
     switch (element.type) {
         case "bulleted-list":
@@ -68,7 +67,16 @@ const Image: React.FC<{
     return (
         <div {...attributes}>
             {children}
-            <div contentEditable={false} style={{ position: "relative" }}>
+            <div
+                contentEditable={false}
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "relative",
+                }}
+            >
                 <img
                     src={element.url}
                     style={{

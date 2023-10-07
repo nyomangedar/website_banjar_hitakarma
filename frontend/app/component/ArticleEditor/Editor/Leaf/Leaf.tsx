@@ -1,8 +1,6 @@
 import { useCallback } from "react";
 
-export const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
-
-const Leaf = ({ attributes, children, leaf }) => {
+export const Leaf = ({ attributes, children, leaf }) => {
     if (leaf.bold) {
         children = <span className="font-bold">{children}</span>;
     }
