@@ -1,22 +1,35 @@
 import MarkButton from "./MarkButton";
 import BlockButton from "./BlockButton";
 import InsertImageButton from "./InsertImageButton";
+import {
+    FaBold,
+    FaItalic,
+    FaUnderline,
+    FaHeading,
+    FaListOl,
+    FaListUl,
+    FaAlignLeft,
+    FaAlignCenter,
+    FaAlignJustify,
+    FaAlignRight,
+    FaImage,
+} from "react-icons/fa";
 
 const ToolBar: React.FC = () => {
     return (
-        <div className="flex gap-5">
-            <MarkButton format="bold" icon="format_bold" />
-            <MarkButton format="italic" icon="format_italic" />
-            <MarkButton format="underline" icon="format_underlined" />
-            <BlockButton format="heading-one" icon="looks_one" />
-            <BlockButton format="heading-two" icon="looks_two" />
-            <BlockButton format="numbered-list" icon="format_list_numbered" />
-            <BlockButton format="bulleted-list" icon="format_list_bulleted" />
-            <BlockButton format="left" icon="format_align_left" />
-            <BlockButton format="center" icon="format_align_center" />
-            <BlockButton format="right" icon="format_align_right" />
-            <BlockButton format="justify" icon="format_align_justify" />
-            <InsertImageButton icon="insert_image" />
+        <div className="flex justify-around sticky top-28 z-[999]">
+            <MarkButton format="bold" icon={FaBold} />
+            <MarkButton format="italic" icon={FaItalic} />
+            <MarkButton format="underline" icon={FaUnderline} />
+            <BlockButton format="heading-one" icon={FaHeading} />
+            <BlockButton format="heading-two" icon={FaHeading} />
+            <BlockButton format="numbered-list" icon={FaListOl} />
+            <BlockButton format="bulleted-list" icon={FaListUl} />
+            <BlockButton format="left" icon={FaAlignLeft} />
+            <BlockButton format="center" icon={FaAlignCenter} />
+            <BlockButton format="right" icon={FaAlignRight} />
+            <BlockButton format="justify" icon={FaAlignJustify} />
+            <InsertImageButton icon={FaImage} />
         </div>
     );
 };

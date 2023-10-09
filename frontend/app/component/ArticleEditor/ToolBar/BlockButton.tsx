@@ -1,22 +1,32 @@
 import { Editor, Element, Transforms } from "slate";
 import { useSlate } from "slate-react";
+import { IconType } from "react-icons";
+import { createElement } from "react";
 
 const LIST_TYPES = ["numbered-list", "bulleted-list"];
 const TEXT_ALIGN_TYPES = ["left", "center", "right", "justify"];
 
 const BlockButton: React.FC<{
     format: any;
-    icon: string;
+    icon: IconType;
 }> = ({ format, icon }) => {
     const editor = useSlate();
+    const active = isBlockActive(editor, format);
+    const classNameInactive = "bg-slate-100 p-3 rounded sticky top-28";
+    const classNameActive = "bg-black p-3 rounded";
+    const iconInactive = { size: 25 };
+    const iconActive = { size: 25, color: "white" };
     return (
         <button
+            className={active ? classNameActive : classNameInactive}
             onMouseDown={(event) => {
                 event.preventDefault();
                 toggleBlock(editor, format);
             }}
         >
-            {icon}
+            {active
+                ? createElement(icon, iconActive)
+                : createElement(icon, iconInactive)}
         </button>
     );
 };
@@ -48,6 +58,10 @@ const toggleBlock = (editor: any, format: any) => {
         };
     }
     Transforms.setNodes<Element>(editor, newProperties);
+    if (!isActive && isList) {
+        const block = { type: format, children: [] };
+        Transforms.wrapNodes(editor, block);
+    }
 };
 
 const isBlockActive = (

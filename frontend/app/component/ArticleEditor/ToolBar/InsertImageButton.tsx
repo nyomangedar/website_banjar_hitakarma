@@ -1,8 +1,10 @@
 import { useSlateStatic } from "slate-react";
 import { isImageUrl, insertImage } from "@/app/utils/customEditor";
+import { IconType } from "react-icons";
+import { createElement } from "react";
 
 const InsertImageButton: React.FC<{
-    icon: string;
+    icon: IconType;
 }> = ({ icon }) => {
     const editor = useSlateStatic();
     return (
@@ -17,7 +19,7 @@ const InsertImageButton: React.FC<{
                 url && insertImage(editor, url);
             }}
         >
-            {icon}
+            {createElement(icon, { size: 25 })}
         </button>
     );
 };

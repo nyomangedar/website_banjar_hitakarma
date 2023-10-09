@@ -25,7 +25,19 @@ export type ParagraphElement = {
     children: Descendant[];
 };
 
-type CustomElement = ImageElement | ParagraphElement;
+export type ListItemElement = { type: "list-item"; children: Descendant[] };
+
+export type BulletedListElement = {
+    type: "bulleted-list";
+    align?: string;
+    children: Descendant[];
+};
+
+type CustomElement =
+    | ImageElement
+    | ParagraphElement
+    | ListItemElement
+    | BulletedListElement;
 
 export const withImages = (editor: any) => {
     const { insertData, isVoid } = editor;

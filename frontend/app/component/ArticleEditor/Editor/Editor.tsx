@@ -44,7 +44,7 @@ const Editor: React.FC = () => {
         >
             <ToolBar />
             <Editable
-                style={{ padding: "5px" }}
+                className="p-2 mt-2"
                 renderElement={renderElement}
                 renderLeaf={renderLeaf}
                 spellCheck
