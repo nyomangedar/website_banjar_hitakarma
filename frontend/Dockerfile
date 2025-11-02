@@ -1,63 +1,71 @@
+# ============================
+# 1️⃣ Base image
+# ============================
 FROM node:18-alpine AS base
-
-# Install dependencies only when needed
-FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-RUN npm config set proxy http://18.170.117.198
+# Fix for some native packages
+RUN apk add --no-cache libc6-compat
 
-# Install dependencies based on the preferred package manager
+# ----------------------------
+# 2️⃣ Dependencies stage
+# ----------------------------
+FROM base AS deps
+
+# Copy lockfiles (support yarn/npm/pnpm)
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+
+# Install dependencies (include devDeps so Next.js is available)
 RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
+  if [ -f yarn.lock ]; then yarn install --frozen-lockfile --production=false; \
+  elif [ -f package-lock.json ]; then npm ci --include=dev; \
+  elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm install --frozen-lockfile; \
+  else echo "Lockfile not found" && exit 1; \
   fi
 
-
-# Rebuild the source code only when needed
+# ----------------------------
+# 3️⃣ Build stage
+# ----------------------------
 FROM base AS builder
 WORKDIR /app
+
+# Copy dependencies and source
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry during the build.
+# Optional: disable Next.js telemetry
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+# Build Next.js app
 RUN yarn build
 
-# If using npm comment out above and use below instead
-# RUN npm run build
-
-# Production image, copy all the files and run next
-FROM base AS runner
+# ----------------------------
+# 4️⃣ Runtime (production) stage
+# ----------------------------
+FROM node:18-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
-# Uncomment the following line in case you want to disable telemetry during runtime.
-# ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+EXPOSE 3000
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
 USER nextjs
 
+# --- Option A: If using standalone build (recommended) ---
+# Requires next.config.js → { output: "standalone" }
 COPY --from=builder /app/public ./public
-
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-EXPOSE 3000
+# --- Option B: Fallback for normal build ---
+# Uncomment this block and comment the 3 lines above if you don’t use standalone
+# COPY --from=builder /app/.next ./.next
+# COPY --from=builder /app/public ./public
+# COPY --from=builder /app/node_modules ./node_modules
+# COPY --from=builder /app/package.json ./package.json
 
-ENV PORT 3000
-ENV HOSTNAME localhost
-
+# Start the app
 CMD ["node", "server.js"]
-
